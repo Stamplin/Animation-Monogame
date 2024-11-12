@@ -28,6 +28,14 @@ namespace Animation_Monogame
         Rectangle orangeTribbleRectangle;
         Vector2 orangeTribbleSpeed;
 
+        //add background
+        Texture2D greyBackgroundTexture;
+        Texture2D creamBackgroundTexture;
+        Texture2D brownBackgroundTexture;
+        Texture2D orangeBackgroundTexture;
+
+        //bg picker for background
+        int pickedBG = 0;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -53,7 +61,7 @@ namespace Animation_Monogame
             creamTribbleSpeed = new Vector2(-2, 0);
             //brown - vertical
             brownTribbleRectangle = new Rectangle(400, 200, 100, 100);
-            brownTribbleSpeed = new Vector2(0, -2);
+            brownTribbleSpeed = new Vector2(0, -3);
             //orange - diagonal
             orangeTribbleRectangle = new Rectangle(200, 200, 100, 100);
             orangeTribbleSpeed = new Vector2(3, -2);
@@ -69,6 +77,12 @@ namespace Animation_Monogame
             brownTribbleTexture = Content.Load<Texture2D>("tribbleBrown");
             orangeTribbleTexture = Content.Load<Texture2D>("tribbleOrange");
 
+            //BG
+            greyBackgroundTexture = Content.Load<Texture2D>("greyBG");
+            creamBackgroundTexture = Content.Load<Texture2D>("creamBG");
+            brownBackgroundTexture = Content.Load<Texture2D>("brownBG");
+            orangeBackgroundTexture = Content.Load<Texture2D>("orangeBG");
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -82,20 +96,24 @@ namespace Animation_Monogame
             if (greyTribbleRectangle.Right > window.Width || greyTribbleRectangle.Left < 0)
             {
                 greyTribbleSpeed.X *= -1;
+                pickedBG = 0;
             }
             if (greyTribbleRectangle.Bottom > window.Height || greyTribbleRectangle.Top < 0)
             {
                 greyTribbleSpeed.Y *= -1;
+                pickedBG = 0;
             }
             //cream
             creamTribbleRectangle.X += (int)creamTribbleSpeed.X;
             if (creamTribbleRectangle.Right > window.Width || creamTribbleRectangle.Left < 0)
             {
                 creamTribbleSpeed.X *= -1;
+                pickedBG = 1;
             }
             if (creamTribbleRectangle.Bottom > window.Height || creamTribbleRectangle.Top < 0)
             {
                 creamTribbleSpeed.Y *= -1;
+                pickedBG = 1;
             }
             //brown
             brownTribbleRectangle.X += (int)brownTribbleSpeed.X;
@@ -103,10 +121,12 @@ namespace Animation_Monogame
             if (brownTribbleRectangle.Right > window.Width || brownTribbleRectangle.Left < 0)
             {
                 brownTribbleSpeed.X *= -1;
+                pickedBG = 2;
             }
             if (brownTribbleRectangle.Bottom > window.Height || brownTribbleRectangle.Top < 0)
             {
                 brownTribbleSpeed.Y *= -1;
+                pickedBG = 2;
             }
             //orange
             orangeTribbleRectangle.X += (int)orangeTribbleSpeed.X;
@@ -114,10 +134,12 @@ namespace Animation_Monogame
             if (orangeTribbleRectangle.Right > window.Width || orangeTribbleRectangle.Left < 0)
             {
                 orangeTribbleSpeed.X *= -1;
+                pickedBG = 3;
             }
             if (orangeTribbleRectangle.Bottom > window.Height || orangeTribbleRectangle.Top < 0)
             {
                 orangeTribbleSpeed.Y *= -1;
+                pickedBG = 3;
             }
 
             greyTribbleRectangle.Y += (int)greyTribbleSpeed.Y;
@@ -131,6 +153,23 @@ namespace Animation_Monogame
             // TODO: Add your drawing code here
 
             _spriteBatch.Begin();
+            //random BG based on the tribble
+            if (pickedBG == 0)
+            { 
+                _spriteBatch.Draw(greyBackgroundTexture, window, Color.White);
+            }
+            if (pickedBG == 1)
+            {
+                _spriteBatch.Draw(creamBackgroundTexture, window, Color.White);
+            }
+            if (pickedBG == 2)
+            {
+                _spriteBatch.Draw(brownBackgroundTexture, window, Color.White);
+            }
+            if (pickedBG == 3)
+            {
+                _spriteBatch.Draw(orangeBackgroundTexture, window, Color.White);
+            }
 
             _spriteBatch.Draw(greyTribbleTexture, greyTribbleRectangle, Color.White);
             _spriteBatch.Draw(creamTribbleTexture, creamTribbleRectangle, Color.White);
