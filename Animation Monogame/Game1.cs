@@ -93,6 +93,53 @@ namespace Animation_Monogame
             // TODO: Add your update logic here
             //grey
             greyTribbleRectangle.X += (int)greyTribbleSpeed.X;
+            creamTribbleRectangle.X += (int)creamTribbleSpeed.X;
+            if (greyTribbleRectangle.Intersects(creamTribbleRectangle))
+            {
+                greyTribbleSpeed.X *= -1;
+                greyTribbleSpeed.Y *= -1;
+                creamTribbleSpeed.X *= -1;
+                creamTribbleSpeed.Y *= -1;
+            }
+            if (greyTribbleRectangle.Intersects(brownTribbleRectangle))
+            {
+                greyTribbleSpeed.X *= -1;
+                greyTribbleSpeed.Y *= -1;
+                brownTribbleSpeed.X *= -1;
+                brownTribbleSpeed.Y *= -1;
+            }
+            if (greyTribbleRectangle.Intersects(orangeTribbleRectangle))
+            {
+                greyTribbleSpeed.X *= -1;
+                greyTribbleSpeed.Y *= -1;
+                orangeTribbleSpeed.X *= -1;
+                orangeTribbleSpeed.Y *= -1;
+            }
+            if (creamTribbleRectangle.Intersects(brownTribbleRectangle))
+            {
+                creamTribbleSpeed.X *= -1;
+                creamTribbleSpeed.Y *= -1;
+                brownTribbleSpeed.X *= -1;
+                brownTribbleSpeed.Y *= -1;
+            }
+            if (creamTribbleRectangle.Intersects(orangeTribbleRectangle))
+            {
+                creamTribbleSpeed.X *= -1;
+                creamTribbleSpeed.Y *= -1;
+                orangeTribbleSpeed.X *= -1;
+                orangeTribbleSpeed.Y *= -1;
+            }
+            if (brownTribbleRectangle.Intersects(orangeTribbleRectangle))
+            {
+                brownTribbleSpeed.X *= -1;
+                brownTribbleSpeed.Y *= -1;
+                orangeTribbleSpeed.X *= -1;
+                orangeTribbleSpeed.Y *= -1;
+            }
+
+
+
+
             if (greyTribbleRectangle.Right > window.Width || greyTribbleRectangle.Left < 0)
             {
                 greyTribbleSpeed.X *= -1;
@@ -104,7 +151,7 @@ namespace Animation_Monogame
                 pickedBG = 0;
             }
             //cream
-            creamTribbleRectangle.X += (int)creamTribbleSpeed.X;
+            
             if (creamTribbleRectangle.Right > window.Width || creamTribbleRectangle.Left < 0)
             {
                 creamTribbleSpeed.X *= -1;
